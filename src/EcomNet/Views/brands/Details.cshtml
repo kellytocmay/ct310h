@@ -1,0 +1,42 @@
+﻿@model EcomNet.Models.brand
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>brand</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name_brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name_brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.desc_brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desc_brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.logo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.logo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_brand }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

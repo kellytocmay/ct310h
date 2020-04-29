@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="brand">
+    <Key>
+      <PropertyRef Name="id_brand" />
+    </Key>
+    <Property Name="id_brand" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_brand" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="desc_brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="products" Relationship="Self.FK__products__id_bra__6B24EA82" FromRole="brands" ToRole="products" />
+  </EntityType>
+  <EntityType Name="cart_items">
+    <Key>
+      <PropertyRef Name="cart_item_id" />
+    </Key>
+    <Property Name="cart_item_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="quantity_in_cart" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="id_product" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="product" Relationship="Self.FK__cart_item__id_pr__6FE99F9F" FromRole="cart_items" ToRole="products" />
+    <NavigationProperty Name="user" Relationship="Self.FK__cart_item__id_us__6EF57B66" FromRole="cart_items" ToRole="users" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="id_category" />
+    </Key>
+    <Property Name="id_category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_category" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="desc_category" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="products" Relationship="Self.FK__products__id_cat__6C190EBB" FromRole="categories" ToRole="products" />
+  </EntityType>
+  <EntityType Name="order_items">
+    <Key>
+      <PropertyRef Name="order_item_id" />
+    </Key>
+    <Property Name="order_item_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="quantity_in_order" Type="Int32" Nullable="false" />
+    <Property Name="id_order" Type="Int32" Nullable="false" />
+    <Property Name="id_product" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="order" Relationship="Self.FK__order_ite__id_or__76969D2E" FromRole="order_items" ToRole="orders" />
+    <NavigationProperty Name="product" Relationship="Self.FK__order_ite__id_pr__75A278F5" FromRole="order_items" ToRole="products" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="id_order" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="id_order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ordered_at" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="order_items" Relationship="Self.FK__order_ite__id_or__76969D2E" FromRole="orders" ToRole="order_items" />
+    <NavigationProperty Name="user" Relationship="Self.FK__orders__id_user__72C60C4A" FromRole="orders" ToRole="users" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id_product" />
+    </Key>
+    <Property Name="id_category" Type="Int32" Nullable="false" />
+    <Property Name="id_brand" Type="Int32" Nullable="false" />
+    <Property Name="id_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_product" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="desc_product" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="stock" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="brand" Relationship="Self.FK__products__id_bra__6B24EA82" FromRole="products" ToRole="brands" />
+    <NavigationProperty Name="cart_items" Relationship="Self.FK__cart_item__id_pr__6FE99F9F" FromRole="products" ToRole="cart_items" />
+    <NavigationProperty Name="category" Relationship="Self.FK__products__id_cat__6C190EBB" FromRole="products" ToRole="categories" />
+    <NavigationProperty Name="order_items" Relationship="Self.FK__order_ite__id_pr__75A278F5" FromRole="products" ToRole="order_items" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phonenumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="role" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="cart_items" Relationship="Self.FK__cart_item__id_us__6EF57B66" FromRole="users" ToRole="cart_items" />
+    <NavigationProperty Name="orders" Relationship="Self.FK__orders__id_user__72C60C4A" FromRole="users" ToRole="orders" />
+  </EntityType>
+  <Association Name="FK__products__id_bra__6B24EA82">
+    <End Role="brands" Type="Self.brand" Multiplicity="1" />
+    <End Role="products" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="brands">
+        <PropertyRef Name="id_brand" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="id_brand" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cart_item__id_pr__6FE99F9F">
+    <End Role="products" Type="Self.product" Multiplicity="1" />
+    <End Role="cart_items" Type="Self.cart_items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="id_product" />
+      </Principal>
+      <Dependent Role="cart_items">
+        <PropertyRef Name="id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cart_item__id_us__6EF57B66">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="cart_items" Type="Self.cart_items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="cart_items">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__products__id_cat__6C190EBB">
+    <End Role="categories" Type="Self.category" Multiplicity="1" />
+    <End Role="products" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categories">
+        <PropertyRef Name="id_category" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__order_ite__id_or__76969D2E">
+    <End Role="orders" Type="Self.order" Multiplicity="1" />
+    <End Role="order_items" Type="Self.order_items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="id_order" />
+      </Principal>
+      <Dependent Role="order_items">
+        <PropertyRef Name="id_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__order_ite__id_pr__75A278F5">
+    <End Role="products" Type="Self.product" Multiplicity="1" />
+    <End Role="order_items" Type="Self.order_items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="id_product" />
+      </Principal>
+      <Dependent Role="order_items">
+        <PropertyRef Name="id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__orders__id_user__72C60C4A">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="orders" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="brands" EntityType="Self.brand" />
+    <EntitySet Name="cart_items" EntityType="Self.cart_items" />
+    <EntitySet Name="categories" EntityType="Self.category" />
+    <EntitySet Name="order_items" EntityType="Self.order_items" />
+    <EntitySet Name="orders" EntityType="Self.order" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK__products__id_bra__6B24EA82" Association="Self.FK__products__id_bra__6B24EA82">
+      <End Role="brands" EntitySet="brands" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cart_item__id_pr__6FE99F9F" Association="Self.FK__cart_item__id_pr__6FE99F9F">
+      <End Role="products" EntitySet="products" />
+      <End Role="cart_items" EntitySet="cart_items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cart_item__id_us__6EF57B66" Association="Self.FK__cart_item__id_us__6EF57B66">
+      <End Role="users" EntitySet="users" />
+      <End Role="cart_items" EntitySet="cart_items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__products__id_cat__6C190EBB" Association="Self.FK__products__id_cat__6C190EBB">
+      <End Role="categories" EntitySet="categories" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__order_ite__id_or__76969D2E" Association="Self.FK__order_ite__id_or__76969D2E">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="order_items" EntitySet="order_items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__order_ite__id_pr__75A278F5" Association="Self.FK__order_ite__id_pr__75A278F5">
+      <End Role="products" EntitySet="products" />
+      <End Role="order_items" EntitySet="order_items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__orders__id_user__72C60C4A" Association="Self.FK__orders__id_user__72C60C4A">
+      <End Role="users" EntitySet="users" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

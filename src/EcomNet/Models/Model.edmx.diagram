@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3953986655c2424c8a82a95b01aff6b8" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.brand" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.cart_items" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.category" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.order_items" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.order" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.product" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.user" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__products__id_bra__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__cart_item__id_pr__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__cart_item__id_us__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__products__id_cat__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__order_ite__id_or__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__order_ite__id_pr__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__orders__id_user__72C60C4A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
